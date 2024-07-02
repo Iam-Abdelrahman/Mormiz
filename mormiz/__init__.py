@@ -1,1 +1,1 @@
-from mormiz.mormiz import Mormiz
+from .mormiz import Mormiz
