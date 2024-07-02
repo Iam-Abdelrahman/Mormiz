@@ -1,0 +1,7 @@
+**/target/**
+target/
+build/
+.venv/
+arabic_dataset.txt
+log.txt
+test.txt
