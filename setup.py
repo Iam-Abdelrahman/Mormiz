@@ -14,7 +14,7 @@ setup(
     ],
     packages=["mormiz"],
     zip_safe=False,
-    version = '0.1',
+    version = '0.2',
     license='MIT',  
     # description = 'Mormiz an Arabic tokenizer for LLM',    
     # author = 'Iam-Abdelrahman',
