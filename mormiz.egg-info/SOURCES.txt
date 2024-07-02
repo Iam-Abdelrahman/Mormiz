@@ -8,5 +8,4 @@ mormiz.egg-info/PKG-INFO
 mormiz.egg-info/SOURCES.txt
 mormiz.egg-info/dependency_links.txt
 mormiz.egg-info/not-zip-safe
-mormiz.egg-info/requires.txt
 mormiz.egg-info/top_level.txt
