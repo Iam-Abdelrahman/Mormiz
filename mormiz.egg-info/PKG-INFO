@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: mormiz
+Version: 0.1
+Summary: Mormiz an Arabic tokenizer for LLM
+Home-page: https://github.com/Iam-Abdelrahman/Mormiz
+Download-URL: https://github.com/Iam-Abdelrahman/Mormiz/archive/refs/tags/0.1.tar.gz
+Author: Iam-Abdelrahman
+Author-email: iamabdelrahmanai@gmail.com
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Arabic Tokenizer :: LLM
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.11
+License-File: LICENSE.txt
+Requires-Dist: setuptools_rust
+Requires-Dist: setuptools
