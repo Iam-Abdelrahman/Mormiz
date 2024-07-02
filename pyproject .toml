@@ -1,0 +1,44 @@
+[build-system]
+requires = ["maturin>=1.6,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "mormiz"
+version = "0.5.3"
+description = "mormiz is a an Arabic Tokenizer"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+dynamic = ["version"]
+[tool.maturin]
+features = ["pyo3/extension-module"]
+authors = [{name = "Abdelrahman Mohamed"}, {email = "iamabdelrahmanai@gmail.com"}]
+license = {file = "LICENSE"}
+readme = "README.md"
+
+homepage = "https://github.com/Iam-Abdelrahman/Mormiz"
+repository = "https://github.com/Iam-Abdelrahman/Mormiz"
+
+
+[tool.cibuildwheel]
+build-frontend = "build"
+build-verbosity = 1
+
+linux.before-all = "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+linux.environment = { PATH = "$PATH:$HOME/.cargo/bin" }
+macos.before-all = "rustup target add aarch64-apple-darwin"
+
+skip = [
+  "*-manylinux_i686",
+  "*-musllinux_i686",
+  "*-win32",
+]
+macos.archs = ["x86_64", "arm64"]
+
+test-skip = "*-macosx_arm64"
+
+[[tool.cibuildwheel.overrides]]
+select = "*linux_aarch64"
