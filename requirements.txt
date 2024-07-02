@@ -1,0 +1,2 @@
+setuptools==69.5.1
+setuptools_rust==1.9.0

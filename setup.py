@@ -16,6 +16,10 @@ setup(
     zip_safe=False,
     version = '0.2',
     license='MIT',  
+    install_requires=[
+        'setuptools_rust==1.9.0',
+        'setuptools==69.5.1',
+    ],
     # description = 'Mormiz an Arabic tokenizer for LLM',    
     # author = 'Iam-Abdelrahman',
     # author_email = 'iamabdelrahmanai@gmail.com',   
