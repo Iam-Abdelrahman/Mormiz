@@ -9,7 +9,6 @@ Author-email: iamabdelrahmanai@gmail.com
 License: MIT
 Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Developers
-Classifier: Topic :: Arabic Tokenizer :: LLM
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Programming Language :: Python :: 3.11
 License-File: LICENSE.txt
