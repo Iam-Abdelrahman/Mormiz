@@ -42,7 +42,7 @@ jobs:
         with:
           python-version: '3.7'
       - name: Install Python development packages
-      run: sudo apt-get install -y python3.7-dev
+        run: sudo apt-get install -y python3.7-dev
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
