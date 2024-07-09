@@ -1,3 +1,4 @@
+use linked_hash_map::LinkedHashMap;
 use pyo3::prelude::*;
 use pyo3::types::PyModule;
 use pyo3::{pymodule, PyResult, Python};
@@ -12,7 +13,7 @@ use unicode_segmentation::UnicodeSegmentation;
 type LookUp = HashMap<u16, Vec<u8>>;
 type Pair = (u16, u16);
 type Merges = HashMap<Pair, u16>;
-type PairCounter = HashMap<Pair, u32>;
+type PairCounter = LinkedHashMap<Pair, u32>;
 type CharsLookup = HashMap<String, u16>;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq)]
@@ -153,8 +154,16 @@ impl Data {
                 bytes.push(*v);
             }
         }
+
+        if bytes.len() <= 1 {
+            return bytes;
+        }
+        println!("bytes are => {:?}", bytes);
         let mut counter = count_occur(&bytes);
+        println!("Counter are {:?}", counter);
+
         let mut max = find_max(&counter).0;
+        println!("Max are {:?}", counter);
         while let Some(merge) = self.merges.get(&max) {
             bytes = replace_occur(max, &bytes, *merge);
             counter = count_occur(&bytes);
@@ -221,7 +230,7 @@ fn encode_bytes(bytes: &[u16], merges: &Merges) -> Vec<u16> {
 }
 
 fn count_occur(bytes: &[u16]) -> PairCounter {
-    let mut counter: PairCounter = HashMap::new();
+    let mut counter: PairCounter = LinkedHashMap::new();
     for (i, b) in bytes.iter().enumerate() {
         if i == bytes.len() - 1 {
             continue;
@@ -306,34 +315,15 @@ pub fn load_from_file(filename: &str) -> Data {
     return data;
 }
 
-#[cfg(test)]
-mod tests {
-
-    use crate::load_from_file;
-
-    // #[test]
-    // fn test_encode() {
-    //     let data = load_from_file("tokenizer");
-    //     let mut buf = [0; 1073741824 / 150];
-    //     File::open("arabic_dataset.txt")
-    //         .expect("Shoud lbe there")
-    //         .read(&mut buf)
-    //         .expect("msg");
-    //     let tokens = data._encode(String::from_utf8_lossy(&buf).to_string());
-    //     let res = data._decode(tokens);
-    //     println!("Decoded Result = {:?}", res);
-    // }
-
-    fn test_hi() {
-        println!("Hi");
-    }
-
-    #[test]
-    fn test_encode() {
-        let str = "Ok";
-        let data = load_from_file("tokenizer");
-        data._decode(data._encode(str.to_owned()));
-    }
+#[test]
+fn test_encode() {
+    let data = load_from_file("tokenizer");
+    let tokens = data._encode("ا".to_string());
+    let tokens1 = data._encode("السلام عليكم".to_string());
+    let tokens3 = data._encode("السلام عليكم".to_string());
+    println!("Tokens are {:?}", tokens);
+    println!("Tokens are {:?}", tokens1);
+    println!("Tokens are {:?}", tokens3);
 }
 
 #[pymodule]
