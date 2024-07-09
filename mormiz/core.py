@@ -1,8 +1,8 @@
-from mormiz import mormiz.load_from_file 
+from mormiz import mormiz
 
 class Mormiz:
     def __init__(self):
-        self.bpe = load_from_file("tokenizer")
+        self.bpe = mormiz.load_from_file("tokenizer")
     def encode(self, text):
         return self.bpe.encode(text)
     def decode(self, text):
