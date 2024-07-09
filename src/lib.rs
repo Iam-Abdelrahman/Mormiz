@@ -166,6 +166,9 @@ impl Data {
         println!("Max are {:?}", counter);
         while let Some(merge) = self.merges.get(&max) {
             bytes = replace_occur(max, &bytes, *merge);
+            if bytes.len() <= 1 {
+                return bytes;
+            }
             counter = count_occur(&bytes);
             max = find_max(&counter).0;
         }
@@ -318,7 +321,7 @@ pub fn load_from_file(filename: &str) -> Data {
 #[test]
 fn test_encode() {
     let data = load_from_file("tokenizer");
-    let tokens = data._encode("ا".to_string());
+    let tokens = data._encode("الس".to_string());
     let tokens1 = data._encode("السلام عليكم".to_string());
     let tokens3 = data._encode("السلام عليكم".to_string());
     println!("Tokens are {:?}", tokens);
