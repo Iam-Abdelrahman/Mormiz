@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "mormiz"
-version = "0.0.1"
+version = "0.0.2"
 description = "mormiz is a an Arabic Tokenizer"
 requires-python = ">=3.8"
 classifiers = [
