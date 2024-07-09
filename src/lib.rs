@@ -337,7 +337,7 @@ mod tests {
 }
 
 #[pymodule]
-fn arabic_tokenizer(_py: Python, m: &PyModule) -> PyResult<()> {
+fn mormiz(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_class::<Data>()?;
     m.add_function(wrap_pyfunction!(load_from_file, m)?)?;
     Ok(())
