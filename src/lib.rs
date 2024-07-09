@@ -337,7 +337,7 @@ mod tests {
 }
 
 #[pymodule]
-fn mormiz(_py: Python, m: &PyModule) -> PyResult<()> {
+fn _mormiz(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_class::<Data>()?;
     m.add_function(wrap_pyfunction!(load_from_file, m)?)?;
     Ok(())
