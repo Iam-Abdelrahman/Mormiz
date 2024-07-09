@@ -1,4 +1,4 @@
-from mormiz import load_from_file 
+from mormiz import mormiz.load_from_file 
 
 class Mormiz:
     def __init__(self):
