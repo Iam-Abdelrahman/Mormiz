@@ -178,9 +178,8 @@ impl Data {
     fn _decode(&self, tokens: Vec<u16>) -> String {
         let mut bytes: Vec<u8> = Vec::new();
         for token in tokens {
-            match self.lookup.get(&token) {
-                Some(v) => bytes.extend(v),
-                None => panic!("This should not happend"),
+            if let Some(v) = self.lookup.get(&token) {
+                bytes.extend(v);
             }
         }
         return String::from_utf8_lossy(&bytes).to_string();
@@ -327,6 +326,7 @@ fn test_encode() {
     println!("Tokens are {:?}", tokens);
     println!("Tokens are {:?}", tokens1);
     println!("Tokens are {:?}", tokens3);
+    println!("Vocab size is {:?}", data.vocab().len());
 }
 
 #[pymodule]
