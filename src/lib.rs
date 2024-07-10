@@ -66,7 +66,6 @@ impl Data {
         let mut file = File::open(train_file).expect("Train File Not Existed");
         let mut buffer: [u8; 3067833] = [0; 1073741824 / 350];
         let mut time = 0;
-        println!("Just Started");
         loop {
             time += 1;
             let count = file.read(&mut buffer).expect("To Work");
@@ -93,7 +92,6 @@ impl Data {
             } else {
                 new_bytes = encode_bytes(&compress_buffer.clone(), &self.merges);
             }
-            println!("Finish converting new read chunk to tokens");
             for c in 0..700 {
                 let counter = count_occur(&new_bytes);
                 let (max, how_much) = find_max(&counter);
@@ -101,7 +99,6 @@ impl Data {
                     continue;
                 };
                 if let Some(c) = self.merges.get(&max) {
-                    println!("No News Loop count is {:?}", c);
                     new_bytes = replace_occur(max, &new_bytes, *c);
                 } else {
                     let new_token = self.lookup.keys().len() as u16;
@@ -158,12 +155,9 @@ impl Data {
         if bytes.len() <= 1 {
             return bytes;
         }
-        println!("bytes are => {:?}", bytes);
         let mut counter = count_occur(&bytes);
-        println!("Counter are {:?}", counter);
 
         let mut max = find_max(&counter).0;
-        println!("Max are {:?}", counter);
         while let Some(merge) = self.merges.get(&max) {
             bytes = replace_occur(max, &bytes, *merge);
             if bytes.len() <= 1 {
@@ -217,16 +211,11 @@ fn encode_bytes(bytes: &[u16], merges: &Merges) -> Vec<u16> {
         if v.is_none() {
             ignores.push(max);
             failed_count += 1;
-            println!("Failed to find a match between the max occur with already learned | Failed Count {failed_count}");
             continue;
         }
         failed_count = 0;
         let merge = v.unwrap();
         bytes = replace_occur(max, &bytes, *merge);
-        println!(
-            "Found a match between the max occur with already learned | Pair is {:?}",
-            max
-        );
     }
     return bytes;
 }
