@@ -1,6 +1,6 @@
 # mormiz
 
-**mormiz** is a fast tokenizer written in Rust, based on the Arabic name مرمْز. This tokenizer is specifically trained on Arabic text, providing efficient and accurate tokenization for natural language processing tasks in Arabic.
+**mormiz** is a fast tokenizer written in Rust, based on the Arabic name مرمِّز. This tokenizer is specifically trained on Arabic text, providing efficient and accurate tokenization for natural language processing tasks in Arabic.
 
 ## Features
 
